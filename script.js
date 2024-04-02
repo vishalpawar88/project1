@@ -96,3 +96,24 @@ document.querySelectorAll(".elem").forEach(function (elem) {
     });
   });
 });
+
+// Function to update the time
+function updateTime() {
+    const now = new Date();
+    const year = now.getFullYear();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const meridiem = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12; // Convert 24-hour time to 12-hour time
+
+    const timeString = `${String(hours).padStart(2, '0')}:${minutes} ${meridiem}`;
+
+    document.getElementById('year').textContent = year;
+    document.getElementById('time').textContent = timeString;
+}
+
+// Initial call to update time
+updateTime();
+
+// Update time every minute
+setInterval(updateTime, 60000);
